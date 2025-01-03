@@ -6,9 +6,11 @@ ENV LANG=en_US.UTF-8
 ADD --chmod=0777 ./dockerPackage/configFiles ./configFiles
 ADD --chmod=0755 ./dockerPackage/solverAdditions ./solverAdditions
 
-# Install sudo 
+# Update the system and install sudo and Ansible
 RUN apt-get update && \
-    apt-get install -y sudo && \
+    apt-get install -y software-properties-common && \
+    apt-add-repository --yes --update ppa:ansible/ansible && \
+    apt-get install -y sudo ansible \
     rm -rf /var/lib/apt/lists/*
 
 # Weird Unicode stuff...
