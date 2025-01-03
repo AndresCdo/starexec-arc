@@ -1,0 +1,47 @@
+---
+- name: Install Development Tools
+  hosts: all
+  become: true
+  
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install Java OpenJDK 8
+      apt:
+        name: openjdk-8-jdk
+        state: present
+
+    - name: Install Ant
+      apt:
+        name: ant
+        state: present
+
+    - name: Install build dependencies
+      apt:
+        name:
+          - gcc
+          - g++
+          - make
+          - curl
+        state: present
+
+    - name: Add NodeSource repository
+      shell: curl -sL https://deb.nodesource.com/setup_16.x | bash -
+      args:
+        warn: false
+        creates: /etc/apt/sources.list.d/nodesource.list
+
+    - name: Install Node.js
+      apt:
+        name: nodejs
+        state: present
+        update_cache: yes
+
+    - name: Install Sass globally via npm
+      npm:
+        name: sass
+        global: yes
+        state: present
