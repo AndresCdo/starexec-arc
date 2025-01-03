@@ -1,0 +1,64 @@
+---
+- name: Configuración del sistema
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Actualiza e instala paquetes
+      apt:
+        update_cache: yes
+        upgrade: dist
+        name:
+          - sudo
+          - git
+          - wget
+          - unzip
+          - file
+          - apache2
+          - tcsh
+          - libnuma-dev
+        state: present
+
+    - name: Habilita el módulo SSL de Apache
+      apache2_module:
+        name: ssl
+        state: present
+
+    - name: Instala herramientas de desarrollo
+      apt:
+        name:
+          - build-essential
+          - libssl-dev
+          - openssl
+        state: present
+
+    - name: Crea certificado SSL para localhost
+      shell: |
+        openssl req -x509 -out localhost.crt -keyout localhost.key \
+            -newkey rsa:2048 -nodes -sha256 \
+            -subj '/CN=localhost' -extensions EXT -config <( \
+               printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+        echo 'made key'
+
+    - name: Crea directorios para certificados SSL
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - /etc/ssl/private
+        - /etc/ssl/certs
+
+    - name: Mueve el certificado y la clave a los directorios apropiados
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        remote_src: yes
+        mode: '0644'
+      loop:
+        - { src: 'localhost.key', dest: '/etc/ssl/private/localhost.key' }
+        - { src: 'localhost.crt', dest: '/etc/ssl/certs/localhost.crt' }
+
+    - name: Instala utilidades DNS
+      apt:
+        name: dnsutils
+        state: present
