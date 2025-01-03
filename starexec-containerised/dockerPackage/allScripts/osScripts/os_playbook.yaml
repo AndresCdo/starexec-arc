@@ -62,3 +62,62 @@
       apt:
         name: dnsutils
         state: present
+
+    - name: Crea grupos
+      group:
+        name: "{{ item.name }}"
+        gid: "{{ item.gid }}"
+      loop:
+        - { name: 'star-web', gid: 160 }
+        - { name: 'tomcat', gid: 153 }
+
+    - name: Crea usuarios
+      user:
+        name: "{{ item.name }}"
+        comment: "{{ item.comment }}"
+        uid: "{{ item.uid }}"
+        group: "{{ item.group }}"
+        home: "{{ item.home }}"
+        shell: /bin/bash
+        create_home: yes
+        system: yes
+      loop:
+        - { name: 'tomcat', comment: 'Tomcat User', uid: 153, group: 'star-web', home: '/home/tomcat' }
+        - { name: 'starexec', comment: 'Starexec User', uid: 152, group: 'star-web', home: '/home/starexec' }
+        - { name: 'sandbox', comment: 'Cluster UserOne', uid: 111, group: 'sandbox', home: '/home/sandbox' }
+        - { name: 'sandbox2', comment: 'Cluster UserTwo', uid: 112, group: 'sandbox2', home: '/home/sandbox2' }
+
+    - name: Añade usuarios a grupos
+      user:
+        name: "{{ item.name }}"
+        groups: "{{ item.groups }}"
+        append: yes
+      loop:
+        - { name: 'sandbox', groups: 'star-web' }
+        - { name: 'sandbox2', groups: 'star-web' }
+        - { name: 'tomcat', groups: 'star-web,sandbox,sandbox2' }
+        - { name: 'starexec', groups: 'star-web' }
+
+    - name: Configura directorios de trabajo
+      file:
+        path: "{{ item.path }}"
+        state: directory
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+        mode: "{{ item.mode }}"
+      loop:
+        - { path: '/export', owner: 'root', group: 'root', mode: '0755' }
+        - { path: '/export/starexec', owner: 'root', group: 'root', mode: '0755' }
+        - { path: '/export/starexec/sandbox', owner: 'tomcat', group: 'star-web', mode: '0755' }
+        - { path: '/export/starexec/sandbox2', owner: 'tomcat', group: 'star-web', mode: '0755' }
+        - { path: '/local/sandbox', owner: 'sandbox', group: 'sandbox', mode: '0770' }
+        - { path: '/local/sandbox2', owner: 'sandbox2', group: 'sandbox2', mode: '0770' }
+
+    - name: Añade permisos especiales a directorios
+      file:
+        path: "{{ item.path }}"
+        mode: 'g+s'
+      loop:
+        - { path: '/local/sandbox' }
+        - { path: '/local/sandbox2' }
+
