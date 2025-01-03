@@ -1,0 +1,37 @@
+---
+- name: Deploy StarExec Application
+  hosts: all
+  become: true
+  vars:
+    starexec_user: starexec
+    starexec_home: "/home/starexec"
+    repo_url: "https://github.com/StarexecMiami/StarExec.git"
+    deploy_path: "{{ starexec_home }}/StarExec-deploy"
+
+  tasks:
+    - name: Clone StarExec repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ deploy_path }}"
+        version: UMprod
+        single_branch: yes
+      become_user: "{{ starexec_user }}"
+
+    - name: Add repository to git safe directories
+      git_config:
+        name: safe.directory
+        scope: global
+        value: "{{ deploy_path }}"
+
+    - name: Set ownership for StarExec files
+      file:
+        path: "{{ starexec_home }}"
+        owner: tomcat
+        group: star-web
+        recurse: yes
+
+    - name: Create symbolic link for CSS shared directory
+      file:
+        src: ../shared
+        dest: "{{ deploy_path }}/WebContent/css/details/shared"
+        state: link
