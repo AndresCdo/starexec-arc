@@ -1,0 +1,19 @@
+---
+- name: Update Sudo Rules
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  become: yes
+  tasks:
+    - name: Append sudo rules
+      lineinfile:
+        path: /etc/sudoers
+        create: no
+        state: present
+        insertafter: EOF
+        line: "{{ item }}"
+      with_lines: cat allScripts/starexecScripts/sudoRules.txt
+
+    - name: Print completion message
+      debug:
+        msg: "Done updating sudo rules"

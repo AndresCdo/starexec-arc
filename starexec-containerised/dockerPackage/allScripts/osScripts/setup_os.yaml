@@ -1,14 +1,30 @@
 ---
 - name: Configuración del sistema
   hosts: localhost
+  gather_facts: no
+  connection: local
   become: yes
   tasks:
-    - name: Actualiza e instala paquetes
+    - name: Actualiza la caché de paquetes y el sistema
       apt:
         update_cache: yes
         upgrade: dist
+        cache_valid_time: 3600
+      async: 300
+      poll: 0
+      register: update_job
+
+    - name: Espera finalización de actualización
+      async_status:
+        jid: "{{ update_job.ansible_job_id }}"
+      register: update_result
+      until: update_result.finished
+      retries: 30
+      delay: 10
+
+    - name: Instala paquetes básicos
+      apt:
         name:
-          - sudo
           - git
           - wget
           - unzip
@@ -18,17 +34,13 @@
           - libnuma-dev
         state: present
 
-    - name: Habilita el módulo SSL de Apache
-      apache2_module:
-        name: ssl
-        state: present
-
-    - name: Instala herramientas de desarrollo
+    - name: Instala herramientas de desarrollo y SSL
       apt:
         name:
           - build-essential
           - libssl-dev
           - openssl
+          - dnsutils
         state: present
 
     - name: Crea certificado SSL para localhost
@@ -36,8 +48,10 @@
         openssl req -x509 -out localhost.crt -keyout localhost.key \
             -newkey rsa:2048 -nodes -sha256 \
             -subj '/CN=localhost' -extensions EXT -config <( \
-               printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+                printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
         echo 'made key'
+      args:
+        executable: /bin/bash
 
     - name: Crea directorios para certificados SSL
       file:
@@ -58,11 +72,6 @@
         - { src: 'localhost.key', dest: '/etc/ssl/private/localhost.key' }
         - { src: 'localhost.crt', dest: '/etc/ssl/certs/localhost.crt' }
 
-    - name: Instala utilidades DNS
-      apt:
-        name: dnsutils
-        state: present
-
     - name: Crea grupos
       group:
         name: "{{ item.name }}"
@@ -70,6 +79,13 @@
       loop:
         - { name: 'star-web', gid: 160 }
         - { name: 'tomcat', gid: 153 }
+
+    - name: Crea grupos adicionales
+      group:
+        name: "{{ item.name }}"
+      loop:
+        - { name: 'sandbox' }
+        - { name: 'sandbox2' }
 
     - name: Crea usuarios
       user:

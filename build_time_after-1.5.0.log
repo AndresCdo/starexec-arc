@@ -1,0 +1,4 @@
+time="2025-01-03T22:12:29-05:00" level=warning msg="\"/\" is not a shared mount, this could cause issues or missing mounts with rootless containers"
+Error: stat /mnt/c/Users/Andres/Documents/GitHub/starexec-arc/Dockerfile: no such file or directory
+time="2025-01-03T22:12:35-05:00" level=warning msg="Found incomplete layer \"df40ec21f50fd9d136f48a85975f4ce7225ef5e963cdd1f9d6a3e8ff757d4dd7\", deleting it"
+podman build --no-cache -t starexec:1.5.0 -f ./Dockerfile .  0.26s user 0.73s system 9% cpu 9.957 total

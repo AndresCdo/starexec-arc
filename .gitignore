@@ -1,16 +1,20 @@
+# starexec-containerised
 starexec-containerised/starexec_podman_key
 starexec-containerised/starexec_podman_key.pub
+
+# provers-containerised
 provers-containerised/problemfile
 
+# starexec-kubernetes/terraform
 starexec-kubernetes/terraform/YAMLFiles/storage.yaml
-starexec-kubernetes/terraform/.terraform
+starexec-kubernetes/terraform/.terraform*
 starexec-kubernetes/terraform/testingMakefile
 starexec-kubernetes/terraform/ssh-keys
-starexec-kubernetes/terraform/.terraform*
 starexec-kubernetes/terraform/EFS_BACKUP
 starexec-kubernetes/terraform/terraform.backup
 starexec-kubernetes/terraform/terraform.tfstate
 starexec-kubernetes/terraform/terraform.tfstate.backup
 starexec-kubernetes/terraform/s3-backup
 
-starexec-proxy-provers/__pycache__
+# starexec-proxy-provers
+starexec-proxy-provers/__pycache__/

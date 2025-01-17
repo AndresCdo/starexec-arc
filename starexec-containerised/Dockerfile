@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
 ENV LANG=en_US.UTF-8
 
@@ -6,24 +6,20 @@ ENV LANG=en_US.UTF-8
 ADD --chmod=0777 ./dockerPackage/configFiles ./configFiles
 ADD --chmod=0755 ./dockerPackage/solverAdditions ./solverAdditions
 
-# Update the system and install sudo and Ansible
+# Install dependencies and configure locales
 RUN apt-get update && \
-    apt-get install -y software-properties-common && \
-    apt-add-repository --yes --update ppa:ansible/ansible && \
-    apt-get install -y sudo ansible \
-    rm -rf /var/lib/apt/lists/*
-
-# Weird Unicode stuff...
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y locales
-RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    apt-get install -y software-properties-common sudo locales && \
+    sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=en_US.UTF-8
-ENV LANG en_US.UTF-8 
+
+ENV LANG en_US.UTF-8
 
 # Run OS scripts
 ADD --chmod=0755 ./dockerPackage/allScripts/osScripts ./allScripts/osScripts
 RUN allScripts/osScripts/installOsDeps.sh
 RUN allScripts/osScripts/SetupUsers.sh
+# RUN ansible-playbook -i "localhost," -c local allScripts/osScripts/setup_os.yaml
 
 # Run Starexec scripts
 ADD --chmod=0755 ./dockerPackage/allScripts/starexecScripts ./allScripts/starexecScripts
@@ -36,6 +32,7 @@ RUN allScripts/starexecScripts/HttpdConfigAndRun.sh
 RUN allScripts/starexecScripts/SetupStarexecOverrideProps.sh
 RUN allScripts/starexecScripts/UpdateSudoRules.sh
 RUN allScripts/starexecScripts/AddRunsolverAndComputerInfo.sh
+# RUN ansible-playbook -i "localhost," -c local allScripts/starexecScripts/starexec_setup.yaml
 
 
 ##################################################################
@@ -63,6 +60,7 @@ RUN if [ "$(uname -m)" = "x86_64" ]; then \
     fi
 RUN chmod +x ./kubectl
 RUN sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+# RUN ansible-playbook -i "localhost," -c local allScripts/starexecScripts/configure_docker_dependencies.yaml
 
 ####################################################################
 
@@ -70,6 +68,11 @@ RUN sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 # Run container build scripts
 ADD --chmod=0755 ./dockerPackage/allScripts/dockerScripts ./allScripts/dockerScripts
 RUN allScripts/dockerScripts/DockerAppBuild.sh
+# RUN mv allScripts/dockerScripts/starexec.conf /etc/supervisor/conf.d/starexec.conf
+# RUN ansible-playbook -i "localhost," -c local allScripts/dockerScripts/build_and_deploy_app.yaml 
+
+# Clean up
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 80
 EXPOSE 443

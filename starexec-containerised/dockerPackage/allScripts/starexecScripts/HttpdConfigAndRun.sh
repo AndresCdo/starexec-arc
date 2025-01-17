@@ -2,38 +2,68 @@
 set -e
 set -o pipefail
 
+# Function to enable Apache modules in parallel
+enable_modules() {
+    modules=("proxy" "headers" "proxy_http" "rewrite")
+    for module in "${modules[@]}"; do
+        sudo a2enmod "$module" &
+    done
+    wait
+}
 
-#add config files for ssh
-# cp ./configFiles/ssl.conf /etc/httpd/conf.d/ # <-- CentOS
-cp ./configFiles/ssl.conf /etc/apache2/sites-available/
+# Function to disable default sites in parallel
+disable_sites() {
+    sites=("000-default.conf" "default-ssl.conf")
+    for site in "${sites[@]}"; do
+        sudo a2dissite "$site" &
+    done
+    wait
+}
 
-#add starexec configFile for https
-# cp ./configFiles/starexec.conf /etc/httpd/conf.d/ # <-- CentOS
-cp ./configFiles/starexec.conf /etc/apache2/sites-available/
+# Function to enable custom sites in parallel
+enable_sites() {
+    sites=("ssl" "starexec")
+    for site in "${sites[@]}"; do
+        sudo a2ensite "$site" &
+    done
+    wait
+}
 
-# disable default sites...
-sudo a2dissite 000-default.conf
-sudo a2dissite default-ssl.conf
+# Function to copy configuration files in parallel
+copy_config_files() {
+    cp ./configFiles/ssl.conf /etc/apache2/sites-available/ &
+    cp ./configFiles/starexec.conf /etc/apache2/sites-available/ &
+    wait
+}
 
-# enable ssl and starexec.conf:
-sudo a2ensite ssl
-sudo a2ensite starexec
+# Function to create logs directory if it doesn't exist
+create_logs_directory() {
+    sudo mkdir -p /etc/apache2/logs/
+}
 
-# needed for something in one of the conf files...
-sudo a2enmod proxy
-sudo a2enmod headers
-sudo a2enmod proxy_http
-sudo a2enmod rewrite
+# Main function to orchestrate the script execution
+main() {
+    # Copy config files for Apache in parallel
+    copy_config_files
 
-sudo mkdir -p /etc/apache2/logs/
+    # Disable default sites in parallel
+    disable_sites
 
+    # Enable custom sites in parallel
+    enable_sites
 
-# reload apache
-sudo service apache2 restart
+    # Enable necessary Apache modules in parallel
+    enable_modules
 
+    # Create logs directory
+    create_logs_directory
 
+    # Reload Apache to apply changes
+    sudo service apache2 restart
 
-# Try to run httpd
-# usr/sbin/httpd || true # <-- CentOS
-sudo /usr/sbin/apache2ctl -D FOREGROUND
+    # Run Apache in the foreground
+    sudo /usr/sbin/apache2ctl -D FOREGROUND
+}
 
+# Execute the main function
+main

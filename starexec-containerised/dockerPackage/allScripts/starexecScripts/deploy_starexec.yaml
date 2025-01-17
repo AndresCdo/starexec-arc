@@ -1,6 +1,8 @@
 ---
 - name: Deploy StarExec Application
-  hosts: all
+  hosts: localhost
+  gather_facts: no
+  connection: local
   become: true
   vars:
     starexec_user: starexec
@@ -16,6 +18,9 @@
         version: UMprod
         single_branch: yes
       become_user: "{{ starexec_user }}"
+      retries: 3
+      delay: 5
+      until: result is succeeded
 
     - name: Add repository to git safe directories
       git_config:
@@ -29,9 +34,13 @@
         owner: tomcat
         group: star-web
         recurse: yes
+      async: 300
+      poll: 0
 
     - name: Create symbolic link for CSS shared directory
       file:
         src: ../shared
         dest: "{{ deploy_path }}/WebContent/css/details/shared"
         state: link
+      async: 300
+      poll: 0

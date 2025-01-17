@@ -1,0 +1,38 @@
+---
+- name: Install and Configure MariaDB
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install MariaDB client and server
+      apt:
+        name:
+          - mariadb-client
+          - mariadb-server
+        state: present
+
+    - name: Check MariaDB version
+      command: mysql -u root --version
+      register: mariadb_version
+
+    - name: Display MariaDB version
+      debug:
+        msg: "{{ mariadb_version.stdout }}"
+
+    - name: List contents of MariaDB database directory
+      command: ls -al /var/lib/mysql
+      register: mysql_dir_contents
+
+    - name: Display MariaDB database directory contents
+      debug:
+        msg: "{{ mysql_dir_contents.stdout }}"
+
+    - name: Installation complete message
+      debug:
+        msg: "Done installing MariaDB"

@@ -1,0 +1,24 @@
+---
+- name: Setup StarExec Override Properties
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  become: yes
+  tasks:
+    - name: Ensure overrides.properties file exists
+      file:
+        path: /home/starexec/StarExec-deploy/build/overrides.properties
+        state: touch
+
+    - name: Append overrides properties
+      copy:
+        src: allScripts/starexecScripts/overridesproperties.properties
+        dest: /home/starexec/StarExec-deploy/build/overrides.properties
+        remote_src: yes
+        mode: '0644'
+        owner: starexec
+        group: starexec
+
+    - name: Print completion message
+      debug:
+        msg: "Done making overrides.properties file"

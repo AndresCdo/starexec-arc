@@ -1,0 +1,18 @@
+---
+- name: Create Machine Specs File
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  become: yes
+  tasks:
+    - name: Ensure the machine specs file exists
+      file:
+        path: /home/starexec/StarExec-deploy/build/Cluster.MachineSpecs.txt
+        state: touch
+      async: 300
+      poll: 0
+      register: create_job
+
+    - name: Print completion message
+      debug:
+        msg: "Done"

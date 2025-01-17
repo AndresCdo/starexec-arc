@@ -2,36 +2,37 @@
 set -e
 set -o pipefail
 
-mkdir /home/starexec/bin
-chown tomcat:star-web /home/starexec/bin
-chmod 755 /home/starexec/bin
+# Create directory if it doesn't exist
+if [ ! -d /home/starexec/bin ]; then
+    mkdir /home/starexec/bin
+fi
 
-cp ../../solverAdditions/GetComputerInfo /home/starexec/bin
-chown tomcat:star-web /home/starexec/bin/GetComputerInfo
-chmod 755 /home/starexec/bin/GetComputerInfo
+# Set ownership and permissions
+chown tomcat:star-web /home/starexec/bin &
+chmod 755 /home/starexec/bin &
 
-# cp ../../solverAdditions/runsolver /home/starexec/StarExec-deploy/src/org/starexec/config/sge/
+# Copy GetComputerInfo script and set permissions
+cp ../../solverAdditions/GetComputerInfo /home/starexec/bin &
+chown tomcat:star-web /home/starexec/bin/GetComputerInfo &
+chmod 755 /home/starexec/bin/GetComputerInfo &
 
-# Too old maybe. had unimplemented error.
-# cd /;
-# git clone https://github.com/utpalbora/runsolver.git
-# cd runsolver/src;
-# make -j `nproc`
-# cp runsolver /home/starexec/StarExec-deploy/src/org/starexec/config/sge/
+# Wait for all background processes to complete
+wait
 
-# I thought this was necessary, but it breaks for ARM.
-# After removing, I didn't have a problem in x86, so ¯\_(ツ)_/¯
-#sudo apt-get install -y g++-multilib
-
+# Navigate to RunSolverSource directory
 cd /home/starexec/StarExec-deploy/src/org/starexec/config/sge/RunSolverSource 
+
+# Clean and build runsolver in parallel
 make clean
-make
+make -j "$(nproc)"
+
+# Copy the built runsolver to the target directory
 cp runsolver /home/starexec/StarExec-deploy/src/org/starexec/config/sge/
 
-
-# Now let's add run_image.py so we can use it if we want to run prover images...
-# https://github.com/StarExecMiami/StarExec-ARC/blob/master/provers-containerised/run_image.py
-# wget https://raw.githubusercontent.com/StarExecMiami/StarExec-ARC/master/provers-containerised/run_image.py -O /home/starexec/StarExec-deploy/src/org/starexec/config/sge/run_image.py
-# Nevermind, We'll just package this with the proxy-prover images.
-
-
+# Documentation:
+# - The `mkdir` command checks if the directory exists before creating it to avoid redundant operations.
+# - The `chown` and `chmod` commands are run in the background to allow parallel execution, improving performance.
+# - The `cp` command for GetComputerInfo is also run in the background for parallel execution.
+# - The `wait` command ensures that all background processes complete before proceeding.
+# - The `make` command uses `-j "$(nproc)"` to utilize all available CPU cores for parallel compilation, speeding up the build process.
+# - Removed unnecessary commented-out code to keep the script clean and maintainable.

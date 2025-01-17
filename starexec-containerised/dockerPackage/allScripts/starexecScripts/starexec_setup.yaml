@@ -1,0 +1,10 @@
+---
+- import_playbook: install_dev_tools.yaml
+- import_playbook: deploy_starexec.yaml
+- import_playbook: create_machine_specs_file.yaml
+- import_playbook: setup_tomcat.yaml
+- import_playbook: install_mariadb.yaml
+- import_playbook: configure_and_run_httpd.yaml
+- import_playbook: setup_starexec_override_props.yaml
+- import_playbook: update_sudo_rules.yaml
+- import_playbook: add_runsolver_and_computer_info.yaml

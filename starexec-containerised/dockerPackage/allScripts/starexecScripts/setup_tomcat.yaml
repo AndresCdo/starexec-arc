@@ -1,0 +1,110 @@
+---
+- name: Setup Tomcat 7
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  become: yes
+  vars:
+    older_tomcat_zip: "~starexec/StarExec-deploy/distribution/apache-tomcat-7.0.64.zip"
+    tomcat_version: "7.0.94"
+    mysql_connector_version: "5.1.9"
+  tasks:
+    - name: Create project directory
+      file:
+        path: /project
+        state: directory
+
+    - name: Unarchive older Tomcat 7.0.64
+      unarchive:
+        src: "{{ older_tomcat_zip }}"
+        dest: /project
+        remote_src: yes
+
+    - name: Download Tomcat 7.0.94
+      get_url:
+        url: "https://archive.apache.org/dist/tomcat/tomcat-7/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
+        dest: /project/apache-tomcat-{{ tomcat_version }}.tar.gz
+      async: 300
+      poll: 10
+
+    - name: Unarchive Tomcat 7.0.94
+      unarchive:
+        src: /project/apache-tomcat-{{ tomcat_version }}.tar.gz
+        dest: /project
+        remote_src: yes
+
+    - name: Download MySQL Connector
+      get_url:
+        url: "https://search.maven.org/remotecontent?filepath=mysql/mysql-connector-java/{{ mysql_connector_version }}/mysql-connector-java-{{ mysql_connector_version }}.jar"
+        dest: /project/mysql-connector-java-{{ mysql_connector_version }}.jar
+      async: 300
+      poll: 10
+
+    # Rest of the tasks remain the same as they are quick operations
+    - name: Copy drmaa.jar from older Tomcat to new Tomcat
+      copy:
+        src: /project/apache-tomcat-7.0.64/lib/drmaa.jar
+        dest: /project/apache-tomcat-{{ tomcat_version }}/lib/drmaa.jar
+        remote_src: yes
+
+    - name: Copy MySQL Connector
+      copy:
+        src: /project/mysql-connector-java-{{ mysql_connector_version }}.jar
+        dest: /project/apache-tomcat-{{ tomcat_version }}/lib/
+        remote_src: yes
+
+    - name: Create symlink for Tomcat
+      file:
+        src: /project/apache-tomcat-{{ tomcat_version }}
+        dest: /project/apache-tomcat-7
+        state: link
+
+    - name: Set Tomcat ownership
+      file:
+        path: /project/apache-tomcat-{{ tomcat_version }}
+        owner: tomcat
+        group: tomcat
+        recurse: yes
+      async: 300
+      poll: 0
+
+    - name: Set execute permissions on Tomcat scripts
+      file:
+        path: /project/apache-tomcat-7/bin
+        mode: "0755"
+        recurse: yes
+      async: 300
+      poll: 0
+
+    - name: Create Tomcat 7 systemd service file
+      copy:
+        dest: /etc/systemd/system/tomcat7.service
+        mode: "0744"
+        content: |
+          [Unit]
+          Description=StarExec Apache Tomcat 7 Servlet Container
+          After=syslog.target network.target
+          [Service]
+          User=tomcat
+          Group=tomcat
+          Type=forking
+          Environment=CATALINA_PID=/var/run/tomcat-7.pid
+          Environment=CATALINA_HOME=/project/apache-tomcat-7
+          Environment=CATALINA_BASE=/project/apache-tomcat-7
+          ExecStart=/project/apache-tomcat-7/bin/startup.sh
+          ExecStop=/project/apache-tomcat-7/bin/shutdown.sh
+          Restart=on-failure
+          [Install]
+          WantedBy=multi-user.target
+
+    - name: Create setenv.sh
+      copy:
+        src: /allScripts/starexecScripts/setenv.txt
+        dest: /project/apache-tomcat-7/bin/setenv.sh
+        owner: tomcat
+        group: tomcat
+        mode: "0644"
+
+    - name: Done configuring Tomcat 7
+      debug:
+        msg: "Tomcat 7 setup complete."

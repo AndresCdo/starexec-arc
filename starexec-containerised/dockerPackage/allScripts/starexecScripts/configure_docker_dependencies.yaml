@@ -1,0 +1,49 @@
+---
+- name:  Configure Docker dependencies
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  become: yes
+  vars:
+    kubectl_stable_version: "{{ lookup('url', 'https://dl.k8s.io/release/stable.txt') }}"
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+
+    - name: Install Podman and OpenSSH client
+      apt:
+        name:
+          - podman
+          - openssh-client
+        state: present
+
+    - name: Configure SSH to accept new host keys
+      lineinfile:
+        path: /etc/ssh/ssh_config
+        line: "StrictHostKeyChecking accept-new"
+        create: yes
+        state: present
+
+    - name: Add sub-IDs to root user
+      command: usermod --add-subuids 100000-165535 --add-subgids 100000-165535 root
+
+    - name: Download kubectl for x86_64
+      get_url:
+        url: "https://dl.k8s.io/release/{{ kubectl_stable_version }}/bin/linux/amd64/kubectl"
+        dest: /usr/local/bin/kubectl
+        mode: "0755"
+      when: ansible_architecture == "x86_64"
+
+    - name: Download kubectl for ARM64
+      get_url:
+        url: "https://dl.k8s.io/release/{{ kubectl_stable_version }}/bin/linux/arm64/kubectl"
+        dest: /usr/local/bin/kubectl
+        mode: "0755"
+      when: ansible_architecture in ["aarch64", "arm64"]
+
+    - name: Print completion message
+      debug:
+        msg: "Dockerfile dependencies have been configured."

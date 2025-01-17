@@ -1,0 +1,55 @@
+---
+- name: Build and Deploy App
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Start MySQL in background
+      shell: /usr/bin/mysqld_safe --basedir=/usr --user=mysql &
+      async: 30
+      poll: 0
+
+    - name: Start Tomcat in background
+      shell: su -c "/project/apache-tomcat-7/bin/catalina.sh run &" tomcat
+      async: 30
+      poll: 0
+
+    - name: Wait for MySQL to become available
+      shell: mysqladmin ping
+      register: mysql_ping
+      until: mysql_ping.rc == 0
+      retries: 30
+      delay: 1
+
+    - name: Drop and recreate starexec database
+      shell: >
+        mysql -u root -e
+        "DROP DATABASE IF EXISTS starexec;
+         CREATE DATABASE starexec;
+         GRANT ALL PRIVILEGES ON starexec.* TO 'se_admin'@'localhost' IDENTIFIED BY 'dfsdf34RFerfg3TFGRfrF3edFVg12few2';
+         FLUSH PRIVILEGES;"
+
+    - name: Attempt build with Ant
+      shell: |
+        cd ~starexec/StarExec-deploy
+        ant build -buildfile build.xml reload-sql update-sql
+      register: first_build
+      ignore_errors: yes
+
+    - name: Run NewInstall.sql on failure, then repeat build
+      shell: |
+        cd ~starexec/StarExec-deploy/sql
+        mysql -u root starexec < NewInstall.sql
+        cd ~starexec/StarExec-deploy
+        ant build -buildfile build.xml reload-sql update-sql
+      when: first_build.rc != 0
+      register: second_build
+      ignore_errors: yes
+
+    - name: Fail if second build also failed
+      fail:
+        msg: "ERROR! Please rerun docker build."
+      when: second_build is defined and second_build.rc != 0
+
+    - name: Build and deployment complete
+      debug:
+        msg: "Build and deployment steps have finished successfully."

@@ -1,0 +1,51 @@
+---
+- name: Run StarExec Tasks
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Adjust ownership for project directories
+      file:
+        path: "{{ item.path }}"
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+        recurse: yes
+      loop:
+        - { path: '/project', owner: 'tomcat', group: 'star-web' }
+        - { path: '/home/starexec', owner: 'tomcat', group: 'star-web' }
+        - { path: '/home/sandbox', owner: 'tomcat', group: 'star-web' }
+        - { path: '/var/lib/mysql', owner: 'mysql', group: 'mysql' }
+        
+    - name: Ensure /home/starexec is executable
+      file:
+        path: /home/starexec
+        mode: '0755'
+        recurse: yes
+
+    - name: Attempt to create Podman connection
+      shell: >
+        podman system connection add host-machine-podman-connection
+        ssh://${SSH_USERNAME}@${HOST_MACHINE}:${SSH_PORT}${SOCKET_PATH}
+        --identity=/root/.ssh/starexec_podman_key
+      register: podman_add
+      ignore_errors: yes
+
+    - name: Report if Podman setup failed
+      debug:
+        msg: "Failed to setup podman connection"
+      when: podman_add is failed
+
+    - name: Wait for services to start
+      pause:
+        seconds: 15
+
+    - name: Run soft-deploy
+      shell: |
+        cd ~starexec/StarExec-deploy
+        script/soft-deploy.sh
+      register: soft_deploy_result
+      ignore_errors: yes
+
+    - name: Print success message
+      debug:
+        msg: "SUCCESS! http://localhost (admin / admin)"
+      when: not soft_deploy_result is failed

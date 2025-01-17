@@ -1,0 +1,49 @@
+---
+- name: Configure and Run Apache HTTPD
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  become: yes
+  tasks:
+    - name: Copy SSL configuration file
+      copy:
+        src: /configFiles/ssl.conf
+        dest: /etc/apache2/sites-available/ssl.conf
+
+    - name: Copy StarExec configuration file
+      copy:
+        src: /configFiles/starexec.conf
+        dest: /etc/apache2/sites-available/starexec.conf
+
+    - name: Disable default sites
+      command: "{{ item }}"
+      with_items:
+        - a2dissite 000-default.conf
+        - a2dissite default-ssl.conf
+
+    - name: Enable SSL and StarExec sites
+      command: "{{ item }}"
+      with_items:
+        - a2ensite ssl
+        - a2ensite starexec
+
+    - name: Enable required Apache modules
+      command: "{{ item }}"
+      with_items:
+        - a2enmod proxy
+        - a2enmod headers
+        - a2enmod proxy_http
+        - a2enmod rewrite
+
+    - name: Create logs directory
+      file:
+        path: /etc/apache2/logs/
+        state: directory
+
+    - name: Restart Apache service
+      service:
+        name: apache2
+        state: restarted
+
+    - name: Start Apache in foreground
+      command: /usr/sbin/apache2ctl -D FOREGROUND

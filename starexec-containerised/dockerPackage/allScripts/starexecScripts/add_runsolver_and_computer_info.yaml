@@ -1,0 +1,45 @@
+---
+- name: Add Runsolver and Computer Info
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  become: yes
+  tasks:
+    - name: Create /home/starexec/bin directory
+      file:
+        path: /home/starexec/bin
+        state: directory
+        owner: tomcat
+        group: star-web
+        mode: '0755'
+
+    - name: Copy GetComputerInfo to /home/starexec/bin
+      copy:
+        src: ../../solverAdditions/GetComputerInfo
+        dest: /home/starexec/bin/GetComputerInfo
+        owner: tomcat
+        group: star-web
+        mode: '0755'
+
+    - name: Clean and build runsolver
+      make:
+        chdir: /home/starexec/StarExec-deploy/src/org/starexec/config/sge/RunSolverSource
+        target: clean
+      args:
+        chdir: /home/starexec/StarExec-deploy/src/org/starexec/config/sge/RunSolverSource
+
+    - name: Build runsolver
+      make:
+        chdir: /home/starexec/StarExec-deploy/src/org/starexec/config/sge/RunSolverSource
+
+    - name: Copy runsolver to target directory
+      copy:
+        src: /home/starexec/StarExec-deploy/src/org/starexec/config/sge/RunSolverSource/runsolver
+        dest: /home/starexec/StarExec-deploy/src/org/starexec/config/sge/runsolver
+        owner: tomcat
+        group: star-web
+        mode: '0755'
+
+    - name: Print completion message
+      debug:
+        msg: "Done adding runsolver and computer info"

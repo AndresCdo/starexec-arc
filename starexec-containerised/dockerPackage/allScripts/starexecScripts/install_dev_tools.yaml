@@ -1,8 +1,9 @@
 ---
 - name: Install Development Tools
-  hosts: all
+  hosts: localhost
+  gather_facts: no
+  connection: local
   become: true
-  
   tasks:
     - name: Update apt cache
       apt:

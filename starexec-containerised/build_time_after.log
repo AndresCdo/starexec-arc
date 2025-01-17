@@ -1,0 +1,20 @@
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+debconf: delaying package configuration, since apt-utils is not installed
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+Generating locales (this might take a while)...
+  en_US.UTF-8... done
+Generation complete.
+Error: building at STEP "RUN ansible-playbook -i "localhost," -c local allScripts/starexecScripts/starexec_setup.yaml": while running runtime: exit status 2
+podman build --no-cache -t starexec:2.0.0 -f ./Dockerfile .  595.72s user 295.27s system 115% cpu 12:49.63 total

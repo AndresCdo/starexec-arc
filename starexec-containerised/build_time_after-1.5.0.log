@@ -1,0 +1,127 @@
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+debconf: delaying package configuration, since apt-utils is not installed
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+Generating locales (this might take a while)...
+  en_US.UTF-8... done
+Generation complete.
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+debconf: delaying package configuration, since apt-utils is not installed
+debconf: delaying package configuration, since apt-utils is not installed
+debconf: delaying package configuration, since apt-utils is not installed
+debconf: delaying package configuration, since apt-utils is not installed
+debconf: delaying package configuration, since apt-utils is not installed
+debconf: delaying package configuration, since apt-utils is not installed
+debconf: delaying package configuration, since apt-utils is not installed
+debconf: delaying package configuration, since apt-utils is not installed
+debconf: delaying package configuration, since apt-utils is not installed
+Generating a RSA private key
+......................................+++++
+..........+++++
+writing new private key to 'localhost.key'
+-----
+debconf: delaying package configuration, since apt-utils is not installed
+E: Could not get lock /var/lib/dpkg/lock-frontend. It is held by process 266 (apt-get)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
+E: Could not get lock /var/lib/dpkg/lock-frontend. It is held by process 266 (apt-get)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
+E: Could not get lock /var/lib/dpkg/lock-frontend. It is held by process 266 (apt-get)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
+E: Could not get lock /var/lib/dpkg/lock-frontend. It is held by process 266 (apt-get)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
+debconf: delaying package configuration, since apt-utils is not installed
+debconf: delaying package configuration, since apt-utils is not installed
+debconf: delaying package configuration, since apt-utils is not installed
+npm notice 
+npm notice New major version of npm available! 8.19.4 -> 11.0.0
+npm notice Changelog: <https://github.com/npm/cli/releases/tag/v11.0.0>
+npm notice Run `npm install -g npm@11.0.0` to update!
+npm notice 
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libnss3.so to tar: read /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libnss3.so: input/output error"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libnssutil3.so to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libogg.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libogg.so.0.8.4 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpango-1.0.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.4400.7 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.4400.7 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.4400.7 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpciaccess.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpciaccess.so.0.11.1 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpcsclite.so.1 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpcsclite.so.1.0.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpixman-1.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpixman-1.so.0.38.4 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libplc4.so to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libplds4.so to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpng16.so.16 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpng16.so.16.37.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpulse-simple.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpulse-simple.so.0.1.1 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpulse.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libpulse.so.0.21.2 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/librsvg-2.so.2 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/librsvg-2.so.2.47.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libsensors.so.5 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libsensors.so.5.0.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libsmime3.so to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libsndfile.so.1 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libsndfile.so.1.0.28 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libssl3.so to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libthai.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libthai.so.0.3.1 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libtiff.so.5 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libtiff.so.5.5.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libvorbis.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libvorbis.so.0.4.8 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libvorbisenc.so.2 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libvorbisenc.so.2.0.11 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libvulkan.so.1 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libvulkan.so.1.2.131 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libvulkan_intel.so to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libvulkan_lvp.so to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libvulkan_radeon.so to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libwayland-client.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libwayland-client.so.0.3.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libwebp.so.6 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libwebp.so.6.0.2 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libwrap.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libwrap.so.0.7.6 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-dri2.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-dri2.so.0.0.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0.0.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-glx.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-glx.so.0.0.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-present.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-present.so.0.0.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-randr.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-randr.so.0.1.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-render.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-render.so.0.0.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-shape.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-shape.so.0.0.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-shm.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-shm.so.0.0.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-sync.so.1 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-sync.so.1.0.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-xfixes.so.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb-xfixes.so.0.0.0 to tar: archive/tar: missed writing 1413008 bytes"
+time="2025-01-03T22:56:00-05:00" level=error msg="Can't add file /home/luz/.local/share/containers/storage/overlay/87c8343821db87ac848f1f225e7465ce0c4457b52ba689c4e3f74ef10c3f4cbd/diff/usr/lib/x86_64-linux-gnu/libxcb.a to tar: archive/tar: missed writing 1413008 bytes"
