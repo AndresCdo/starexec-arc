@@ -1,3 +1,10 @@
+# StarExec Containerized - Immediate Use Instructions
+
+Run `podman run --rm -it -d -p 7827:443 -p 7826:80 ghcr.io/starexecmiami/starexec-arc:latest`.
+The login credentials are `admin:admin`
+
+See [https://starexec.ccs.miami.edu/starexec/public/StarExecUserGuide.pdf](https://starexec.ccs.miami.edu/starexec/public/StarExecUserGuide.pdf) StarExec documentation on how to use StarExec.
+
 # StarExec Containerized - Basic Use Instructions
 
 If you have been given a saved state in a `.tgz` file, use 
