@@ -3,7 +3,9 @@
 Run `podman run --rm -it -d -p 7827:443 -p 7826:80 ghcr.io/starexecmiami/starexec-arc:latest`.
 The login credentials are `admin:admin`
 
-See [https://starexec.ccs.miami.edu/starexec/public/StarExecUserGuide.pdf](https://starexec.ccs.miami.edu/starexec/public/StarExecUserGuide.pdf) StarExec documentation on how to use StarExec.
+If you do not have `podman` installed, see the website [https://podman.io/](https://podman.io/).
+
+If you need help using StarExec, see the documentation [https://starexec.ccs.miami.edu/starexec/public/StarExecUserGuide.pdf](https://starexec.ccs.miami.edu/starexec/public/StarExecUserGuide.pdf).
 
 # StarExec Containerized - Basic Use Instructions
 
